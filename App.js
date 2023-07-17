@@ -16,8 +16,20 @@ export default function App() {
     numbers.push(i);
   }
   
-  const calculationLogic = () => {
-
+  const calculationLogic = (n) => {
+    if(signal = ''){
+      setFirstNumber(parseInt(firstNumber.toString + n.toString()));
+      setStrCalculation(parseInt(firstNumber.toString + n.toString()));
+    }
+    
+    if((n == '/' || n == '*' || n == '-' || n == '+') && secondNumber == 0){
+      setStrCalculation(firstNumber.toString() + n);
+      setSignal(n);
+    }
+    if ( signal != ''){
+      setSecondNumber(parseInt(secondNumber.toString() + n.toString()));
+      setStrCalculation(firstNumber + signal + parseInt(secondNumber.toString() + n.toString()));
+    }
   }
 
   return (
@@ -27,17 +39,20 @@ export default function App() {
         <Text style={{fontSize: 24, color: 'white'}}>{strCalculation}</Text>
       </View>
       <View style={{flexDirection: 'row', height: '16.6%', alignItems: 'center',}}>
-      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+      <TouchableOpacity onPress={() => calculationLogic('+')} style={{width: '20%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
         <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>+</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+      <TouchableOpacity onPress={() => calculationLogic('-')} style={{width: '20%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
         <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>-</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+      <TouchableOpacity onPress={() => calculationLogic('/')} style={{width: '20%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
         <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>/</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+      <TouchableOpacity onPress={() => calculationLogic('*')} style={{width: '20%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
         <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>*</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => calculationLogic('=')} style={{width: '20%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>=</Text>
       </TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', flexWrap: 'wrap', borderTopColor: 'black', borderTopWidth: 2, height: '66.8%'}}>

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Button from './Button';
 
 export default function App() {
@@ -16,29 +16,35 @@ export default function App() {
     numbers.push(i);
   }
   
+  const calculationLogic = () => {
+
+  }
+
   return (
     <View style={{flex: 1, backgroundColor: 'black'}}>
       <StatusBar style="auto" hidden />
-      <Text style={{fontSize: 24, color: 'white'}}>{strCalculation}</Text>
-      <View style={{flexDirection: 'row'}}>
-      <TouchableHighlight style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)'}}>
-        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>+</Text>
-      </TouchableHighlight>
-      <TouchableHighlight style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)'}}>
-        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>-</Text>
-      </TouchableHighlight>
-      <TouchableHighlight style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)'}}>
-        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>/</Text>
-      </TouchableHighlight>
-      <TouchableHighlight style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)'}}>
-        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>*</Text>
-      </TouchableHighlight>
+      <View style={styles.header}>
+        <Text style={{fontSize: 24, color: 'white'}}>{strCalculation}</Text>
       </View>
-      <View style={{flexDirection: 'row', flexWrap: 'wrap', borderTopColor: 'black', borderTopWidth: 2}}>
+      <View style={{flexDirection: 'row', height: '16.6%', alignItems: 'center',}}>
+      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>+</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>-</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>/</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={{width: '25%', backgroundColor: 'rgb(20, 20, 20)', justifyContent: 'center', height: '100%'}}>
+        <Text style={{fontSize: 24, textAlign: 'center', color: 'white'}}>*</Text>
+      </TouchableOpacity>
+      </View>
+      <View style={{flexDirection: 'row', flexWrap: 'wrap', borderTopColor: 'black', borderTopWidth: 2, height: '66.8%'}}>
         {
           numbers.map((val) => {
             return (
-              <Button key={val} number={val.toString()}></Button>
+              <Button calculationLogic={calculationLogic} key={val} number={val.toString()}></Button>
             );
           })
         }
@@ -48,10 +54,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  header: {
+    backgroundColor: 'rgb(20, 20, 20)',
+    height: '16.6%',
     justifyContent: 'center',
-  },
+    paddingLeft: 20
+  }
 });
